@@ -58,6 +58,7 @@ func (ba *BuildArgs) AddFlagSets(flags *flag.FlagSet) {
 	flags.BoolVar(&ba.Color, "color", true, "")
 	flags.BoolVar(&ba.Debug, "debug", false, "")
 	flags.BoolVar(&ba.Force, "force", false, "")
+	flags.BoolVar(&ba.SSHKey, "ssh-key", false, "")
 	flags.BoolVar(&ba.TimestampUi, "timestamp-ui", false, "")
 	flags.BoolVar(&ba.MachineReadable, "machine-readable", false, "")
 
@@ -72,7 +73,7 @@ func (ba *BuildArgs) AddFlagSets(flags *flag.FlagSet) {
 // BuildArgs represents a parsed cli line for a `packer build`
 type BuildArgs struct {
 	MetaArgs
-	Color, Debug, Force, TimestampUi, MachineReadable bool
+	Color, Debug, Force, SSHKey, TimestampUi, MachineReadable bool
 	ParallelBuilds                                    int64
 	OnError                                           string
 }

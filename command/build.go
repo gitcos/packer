@@ -183,6 +183,7 @@ func (c *BuildCommand) RunContext(buildCtx context.Context, cla *BuildArgs) int 
 
 	log.Printf("Build debug mode: %v", cla.Debug)
 	log.Printf("Force build: %v", cla.Force)
+	log.Printf("Emit SSH Key: %v", cla.SSHKey)
 	log.Printf("On error: %v", cla.OnError)
 
 	// Set the debug and force mode and prepare all the builds
@@ -191,6 +192,7 @@ func (c *BuildCommand) RunContext(buildCtx context.Context, cla *BuildArgs) int 
 		log.Printf("Preparing build: %s", b.Name())
 		b.SetDebug(cla.Debug)
 		b.SetForce(cla.Force)
+		b.SetSSHKey(cla.SSHKey)
 		b.SetOnError(cla.OnError)
 
 		warnings, err := b.Prepare()
@@ -369,6 +371,7 @@ Options:
 
   -color=false                  Disable color output. (Default: color)
   -debug                        Debug mode enabled for builds.
+  -ssh-key                      Emit SSH key for logging into VM instance.
   -except=foo,bar,baz           Run all builds and post-procesors other than these.
   -only=foo,bar,baz             Build only the specified builds.
   -force                        Force a build to continue if artifacts exist, deletes existing artifacts.

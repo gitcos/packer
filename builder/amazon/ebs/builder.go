@@ -230,7 +230,7 @@ func (b *Builder) Run(ctx context.Context, ui packer.Ui, hook packer.Hook) (pack
 			AvailabilityZone:    b.config.AvailabilityZone,
 		},
 		&awscommon.StepKeyPair{
-			Debug:        b.config.PackerDebug,
+			Debug:        b.config.PackerDebug || b.config.PackerSSHKey,
 			Comm:         &b.config.RunConfig.Comm,
 			DebugKeyPath: fmt.Sprintf("ec2_%s.pem", b.config.PackerBuildName),
 		},
